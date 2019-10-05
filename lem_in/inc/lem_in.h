@@ -22,6 +22,6 @@ typedef struct  s_lem
     int         flag_end;
     t_pos       start;
     t_pos       end;
-    //t_pos       coords[4000];
+    // t_pos       coords[4000];
     t_vec       conn;
 }               t_lem;

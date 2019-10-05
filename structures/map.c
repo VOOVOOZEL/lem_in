@@ -239,6 +239,7 @@ const char	*map_next_(t_map_base_t *m, t_map_iter_t *iter)
 	return (char*)(iter->node + 1);
 }
 
+#if 0
 int					main(void)
 {
 	map_int_t		m;
@@ -278,3 +279,4 @@ int					main(void)
 	}
 	
 }
+#endif

@@ -27,17 +27,14 @@ void	vector_append(t_vector *vector, void *value, size_t size)
 	printf("\n");
 }
 
-void	*vector_get(t_vector *vector, int index, size_t size)
+void	*vector_get(t_vector *vector, size_t index, size_t size)
 {
-	if (index >= vector->size || index < 0)
-	{
-		printf("Index %d out of bounds for vector of size %zu\n", index, vector->size);
-		exit(1);
-	}
+	if (index >= vector->size)
+		return NULL;
 	return ((void*)(vector->data + size * index));
 }
 
-void	vector_set(t_vector *vector, int index, void *value, size_t size)
+void	vector_set(t_vector *vector, size_t index, void *value, size_t size)
 {
 	char *p;
 	char *data;
@@ -56,8 +53,10 @@ void	vector_set(t_vector *vector, int index, void *value, size_t size)
 
 void	vector_double_capacity_if_full(t_vector *vector)
 {
+	printf("size %zu\n", vector->size);
 	if (vector->size >= vector->capacity)
 	{
+		printf("capacity %zu\n", vector->capacity);
 		vector->capacity *= 2;
 		vector->data = realloc(vector->data, sizeof(void*) * vector->capacity);
 	}
@@ -68,6 +67,7 @@ void	vector_free(t_vector *vector)
 	free(vector->data);
 }
 
+#if 0
 int		main() {
 	t_vector vector;
 	vector_init(&vector, sizeof(int));
@@ -83,3 +83,4 @@ int		main() {
 
 	vector_free(&vector);
 }
+#endif

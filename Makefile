@@ -1,10 +1,10 @@
 NAME = lem-in
 
-HEADER = ./lem_in/inc/lem_in.h
+HEADER = ./lem_in/inc/ ./structures/
 
 FLAGS = -Wall -Werror -Wextra -fsanitize=address
 
-SOURCES = main.c
+SOURCES = ./lem_in/src/main.c ./structures/vector.c ./gnl/get_next_line.c
 
 SRCS = $(addprefix $(SOURCES))
 
@@ -16,10 +16,10 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C ./gnl/libprintf
-	@gcc $(FLAGS) -I $(HEADER) -L ./gnl/libprintf -lftprintf ./gnl/get_next_line.c -o $(NAME) $(OBJS)
+	@gcc $(FLAGS) -L ./gnl/libprintf -lftprintf -o $(NAME) $(OBJS)
 
 %.o : $(DIR_S)/%.c
-	@gcc $(FLAGS) -I $(HEADER) -c  ./lem_in/src/$(SOURCES)
+	@gcc $(FLAGS) -I$(HEADER) -c  $(SOURCES)
 
 clean:
 	@make clean -C ./gnl/libprintf
